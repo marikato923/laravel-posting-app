@@ -49,3 +49,5 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware([
 */
 
 Route::resource('posts', PostController::class)->middleware('auth', 'verified');
+
+

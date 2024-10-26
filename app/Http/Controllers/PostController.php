@@ -41,8 +41,18 @@ class PostController extends Controller
         $post->user_id = Auth::id();
         $post->save();
 
+            // 画像投稿を追加
+        if ($request->hasFile('image')) {
+            $image_path = $request->file('image')->store('public/posts');
+            $post->image_name = basename($image_path);
+        }
+
+        $post->save();
+        
         return redirect()->route('posts.index')->with('flash_message', '投稿が完了しました。');
     }
+
+   
 
     // 編集ページ
     public function edit(Post $post) 

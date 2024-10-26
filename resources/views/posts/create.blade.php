@@ -17,7 +17,7 @@
         <a href="{{ route('posts.index') }}" class="text-decoration-none">&lt; 戻る</a>
         </div>
         
-        <form action="{{ route('posts.store') }}" method="POST">
+        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group mb-3">
                 <label for="title">タイトル</label>
@@ -26,6 +26,11 @@
             <div class="form-group mb-3">
                 <label for="content">本文</label>
                 <textarea class="form-control" id="content" name="content">{{ old('content') }}</textarea>
+            </div>
+            <!-- 画像投稿フォームを追加 -->
+            <div class="form-droup mb-3">
+                <label for="image">画像</label>
+                <input type="file" class="form-control" id="image "name="image">
             </div>
             <button type="submit" class="btn btn-outline-primary">投稿</button>
         </form>

@@ -16,6 +16,10 @@
             <div class="card-body">
             <h2 class="card-title fs-5">{{ $post->title }}</h2>
             <p class="card-text">{{ $post->content }}</p>
+            <!-- 画像を追加 -->
+            @if ($post->image_name)
+            <img class="card-img" src="{{ asset('storage/posts/' . $post->image_name) }}" alt="アップロードした画像ファイル">
+            @endif
             <!-- 更新日時を追加 -->
             <p class="card-text">{{ $post->updated_at }}</p>
 

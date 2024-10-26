@@ -14,4 +14,21 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // いいね実装
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function likeByUser($userId)
+    {
+        return $this->likes()->where('user_id', $userId)->exists();
+    }
+
+    public function getLikesCount()
+{
+    return $this->likes()->count();
+}
+
 }

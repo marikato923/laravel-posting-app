@@ -28,6 +28,16 @@
             <label for="content">本文</label>
             <textarea class="form-control" id="content" name="content">{{ old('content', $post->content) }}</textarea>
         </div>
+
+        <!-- 画像表示と投稿フォーム -->
+        <div class="form-group mb-3">
+            <label for="image">画像</label>
+        @if($post->image_name)
+        <img class="card-img img-fluid" src="{{ asset('storage/posts/' . $post->image_name) }}" alt="アップロードした画像ファイル">
+        @endif
+        <input type="file" class="form-control" id="image "name="image">
+        </div>
         <button type="submit" class="btn btn-outline-primary">更新</button>
+        </div>
         </form>
 @endsection
