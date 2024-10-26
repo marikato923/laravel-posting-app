@@ -18,5 +18,20 @@ footer {
     height: 60px;
     position: absolute;
     bottom: 0;
+    position: fixed;
+}
+
+.image-wrapper {
+    margin-bottom: 20px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.custom-img {
+    max-height: 300px;
+    object-fit: cover; 
+    display: block;
+    margin: 0 auto;
 }
 

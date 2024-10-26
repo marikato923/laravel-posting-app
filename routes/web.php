@@ -50,4 +50,5 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware([
 
 Route::resource('posts', PostController::class)->middleware('auth', 'verified');
 
+Route::delete('/posts/{post}/image', [PostController::class, 'deleteImage'])->name('posts.image.delete');
 

@@ -17,7 +17,7 @@
         <a href="{{ route('posts.index') }}" class="text-decoration-none">&lt; 戻る</a>
         </div>
 
-        <form action="{{ route('posts.update', $post) }}" method="POST">
+        <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="form-group mb-3">
@@ -33,7 +33,12 @@
         <div class="form-group mb-3">
             <label for="image">画像</label>
         @if($post->image_name)
-        <img class="card-img img-fluid" src="{{ asset('storage/posts/' . $post->image_name) }}" alt="アップロードした画像ファイル">
+        <img class="custum-img img-fluid" src="{{ asset('storage/posts/' . $post->image_name) }}" alt="アップロードした画像ファイル">
+        <form action="{{ route('posts.image.delete', $post->id) }}" method="POST" onsubmit="return confirm('本当に画像を削除しますか？');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm btn-danger my-3">画像を削除</button>
+        </form>
         @endif
         <input type="file" class="form-control" id="image "name="image">
         </div>

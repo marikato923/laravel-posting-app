@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use PhpParser\Node\Stmt\Return_;
+use Illuminate\Support\Facades\Storage;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -48,12 +49,25 @@ class PostController extends Controller
         }
 
         $post->save();
-        
+
         return redirect()->route('posts.index')->with('flash_message', '投稿が完了しました。');
     }
 
-   
+     // 画像削除
+     public function deleteImage(PostRequest $post)
+     {
+        if ($post->image_name) {
+            Storage::delete('public/' . $post->image_name);
+            $post->image_name = null;
+            $post->save();
+    
+            return redirect()->back()->with('success', '画像を削除しました。');
+        }
+    
+        return redirect()->back()->with('error', '削除する画像がありません。');
+    }
 
+   
     // 編集ページ
     public function edit(Post $post) 
     {
